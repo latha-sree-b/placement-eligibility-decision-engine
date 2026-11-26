@@ -1,8 +1,7 @@
 // Create a class named EligibilityChecker
 public class EligibilityChecker {
 
-    // Declare an array of EligibilityRule objects
-    // This array stores all the eligibility rules
+    // Declare an array of EligibilityRule objects This array stores all the eligibility rules
     private EligibilityRule[] rules;
 
     // Constructor - automatically executes when an object is created
@@ -18,24 +17,21 @@ public class EligibilityChecker {
             new BacklogRule(),
 
             // Create object to check candidate graduation year
-            new GraduationYearRule()
+            new GraduationYearRule(),
+            new SkillRule()
         };
     }
 
-    // Define a method named evaluate
-    // It accepts Candidate and Job objects as parameters
-    // It returns true or false based on eligibility
+    // Define a method named evaluate It accepts Candidate and Job objects as parameters It returns true or false based on eligibility
     public boolean evaluate(Candidate candidate, Job job) {
 
         // Initially assume that the candidate is eligible
         boolean eligible = true;
 
-        // Loop through all the eligibility rules in the array
-        // rules.length gives the total number of rules
+        // Loop through all the eligibility rules in the array rules.length gives the total number of rules
         for (int i = 0; i < rules.length; i++) {
 
-            // Call the check() method of the current rule
-            // Store the result (true or false) in passed
+            // Call the check() method of the current rule Store the result (true or false) in passed
             boolean passed = rules[i].check(candidate, job);
 
             // Check whether the current eligibility rule is passed

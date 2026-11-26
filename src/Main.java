@@ -21,14 +21,25 @@ public class Main {
 
         // Read candidate's graduation year as an integer
         int graduationYear = scanner.nextInt();
+        int skillCount = scanner.nextInt();
+        String[] skills = new String[skillCount];
+
+        for (int i = 0; i < skillCount; i++) {
+            skills[i] = scanner.next();
+        }
 
         // Create Candidate object and pass candidate details
         Candidate candidate = new Candidate(
             name,              // Pass candidate name
             percentage,        // Pass candidate percentage
             backlogs,          // Pass number of backlogs
-            graduationYear     // Pass graduation year
+            graduationYear,     // Pass graduation year
+            skills
         );
+        String[] requiredSkills = {
+    "Java",
+    "SQL"
+};
 
         // Create Job object and pass job eligibility requirements
         Job job = new Job(
@@ -36,7 +47,8 @@ public class Main {
             "Java Developer",  // Job role
             65.0,              // Minimum required percentage
             0,                 // Maximum allowed backlogs
-            2026               // Required graduation year
+            2026,             // Required graduation year
+            requiredSkills
         );
 
         // Create EligibilityChecker object to check eligibility

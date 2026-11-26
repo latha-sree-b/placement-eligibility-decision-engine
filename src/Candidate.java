@@ -13,13 +13,16 @@ public class Candidate {
     // Declare a private integer variable to store graduation year
     private int graduationYear;
 
+    private String[] skills;
+
     // Create a parameterized constructor
     // It receives four values when a Candidate object is created
     public Candidate(
         String name,           // Parameter to receive candidate name
         double percentage,     // Parameter to receive percentage
         int backlogs,          // Parameter to receive backlog count
-        int graduationYear     // Parameter to receive graduation year
+        int graduationYear,    // Parameter to receive graduation year
+        String[] skills        // Parameter to receive skills
     ) {
 
         // Assign the received name to the instance variable
@@ -33,6 +36,7 @@ public class Candidate {
 
         // Assign the received graduation year to the instance variable
         this.graduationYear = graduationYear;
+        this.skills=skills;
     }
 
     // Create a getter method to return candidate name
@@ -61,5 +65,14 @@ public class Candidate {
 
         // Return the graduationYear variable
         return graduationYear;
+    }
+    public boolean hasSkill(String requiredSkill) {
+        for (int i = 0; i < skills.length; i++) {
+            if (skills[i].equalsIgnoreCase(requiredSkill)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

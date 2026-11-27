@@ -36,20 +36,43 @@ public class Main {
             graduationYear,     // Pass graduation year
             skills
         );
-        String[] requiredSkills = {
-    "Java",
-    "SQL"
-};
+        int jobCount = scanner.nextInt();
+        Job[] jobs = new Job[jobCount];
 
-        // Create Job object and pass job eligibility requirements
-        Job job = new Job(
-            "Infosys",         // Company name
-            "Java Developer",  // Job role
-            65.0,              // Minimum required percentage
-            0,                 // Maximum allowed backlogs
-            2026,             // Required graduation year
-            requiredSkills
-        );
+        for (int i = 0; i < jobCount; i++) {
+            String company = scanner.next();
+            String role = scanner.next();
+            double minimumPercentage = scanner.nextDouble();
+            int maximumBacklogs = scanner.nextInt();
+            int requiredGraduationYear = scanner.nextInt();
+
+            int requiredSkillCount = scanner.nextInt();
+            String[] requiredSkills = new String[requiredSkillCount];
+
+            for (int j = 0; j < requiredSkillCount; j++) {
+                requiredSkills[j] = scanner.next();
+            }
+
+            jobs[i] = new Job(
+                company,
+                role,
+                minimumPercentage,
+                maximumBacklogs,
+                requiredGraduationYear,
+                requiredSkills
+            );
+        }
+        // displays all available jobs
+        System.out.println();
+        System.out.println("AVAILABLE JOBS");
+        // loops through all the jobs and prints them
+        for (int i = 0; i < jobs.length; i++) {
+        System.out.println((i + 1) + ". " +jobs[i].getCompany() +" - " +jobs[i].getRole());
+}
+        // takes user input for the job they want to apply for
+        int selectedJobNumber = scanner.nextInt();
+        // stores the selected job in selectedJob variable    
+        Job selectedJob = jobs[selectedJobNumber - 1];
 
         // Create EligibilityChecker object to check eligibility
         EligibilityChecker checker = new EligibilityChecker();
@@ -70,17 +93,18 @@ public class Main {
         System.out.println("Candidate : " + candidate.getName());
 
         // Display company name using getter method
-        System.out.println("Company   : " + job.getCompany());
+        System.out.println("Company   : " + selectedJob.getCompany());
 
         // Display job role using getter method
-        System.out.println("Role      : " + job.getRole());
+        System.out.println("Role      : " + selectedJob.getRole());
+        
 
         // Print an empty line
         System.out.println();
 
         // Call evaluate method to check candidate eligibility
         // Store the returned true or false value in eligible
-        boolean eligible = checker.evaluate(candidate, job);
+        boolean eligible = checker.evaluate(candidate, selectedJob);
 
         // Print an empty line
         System.out.println();
